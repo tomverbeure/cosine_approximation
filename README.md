@@ -9,7 +9,8 @@ cosine and sine approximation function on [Bluesky](https://bsky.app/profile/cnl
 The original code has a `>>13` or divide-by-8192 term that determines the number of
 points in one period.
 
-I reimplemented the function in Python to have a closer look at the behavior.
+I [reimplemented the function in Python](https://github.com/tomverbeure/cosine_approximation/blob/87ead25532d5cead00da88b81dc5a3332e74cff7/cosine.py#L40-L71) 
+to have a closer look at the behavior.
 
 Here's what happens when you use different dividers:
 
