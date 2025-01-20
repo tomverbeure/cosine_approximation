@@ -13,10 +13,7 @@ def plot_numbers(numbers, dividers, nr_points, plot_points=False):
     plt.figure(figsize=(8, 5))  # Optional: Adjust the figure size
 
     for i, n in enumerate(numbers):
-        if dividers[i] == None:
-            label = "cosine"
-        else:
-            label = f"div %d" % dividers[i]
+        label = dividers[i]
             
         if plot_points:
             plt.plot(n[0:nr_points], marker="x", label=label)
@@ -45,7 +42,7 @@ def cosine(divider, nr_points):
     sprevi  = 1000000
     sprev2i = 0
     
-    cosine  = []
+    cosine  = np.empty(nr_points)
 
     cor         = sprevi
     prev_cor    = sprevi
@@ -55,7 +52,7 @@ def cosine(divider, nr_points):
         prev_cor    = cor
         cor         = sprevi - sprev2i
     
-        cosine.append(cor)
+        cosine[i] = cor
         #print(i, cor)
 
         if prev_cor >= 0 and cor <= 0 and first_zero == False:
@@ -79,14 +76,24 @@ if True:
     c2  = cosine(8192, nr_points)
     c3  = cosine(16384, nr_points)
 
-    x = np.linspace(0, 10.2 * 2 * np.pi, nr_points)  # 0 to 2π with 100 points
-    cos1 = np.cos(x) * 1000000           # Apply cosine function
-
     plot_numbers([ c1, c2, c3 ], [ 4096, 8192, 16384 ], nr_points )
+
+    x = np.linspace(0, 10.2 * 2 * np.pi, nr_points)
+    cos3 = np.cos(x) * 1000000           # Apply cosine function
+
+    diff3 = cos3 - c3
     
-    plot_numbers([ c3, cos1 ], [ 16384, None ], nr_points )
+    plot_numbers([ c3, cos3, diff3 ], [ 16384, "cos", "error" ], nr_points )
     
-    plot_numbers([ c3, cos1 ], [ 16384, None ], 1000 )
+    plot_numbers([ c3, cos3, diff3 ], [ 16384, "cos", "error" ], 1000 )
+
+    max_error_first_q = np.max(np.abs(diff3[0:201]))
+    print("Abs max error in first quadrant: %d" % max_error_first_q)
+    print("Rel max error over amplitidue in first quadrant: %f%%" % ((max_error_first_q/1000000)*100) )
+
+    inst_rel_max_error_first_q = np.max( np.abs(diff3[0:201]) / cos3[0:201] )
+    print("Instantaneous rel max error in first quadrant: %f%%" % (inst_rel_max_error_first_q * 100) )
+
 
 if True:
     c4  = cosine(128, 128)
@@ -94,7 +101,7 @@ if True:
     x = np.linspace(0, 128/72 * 2 * np.pi, 128)  # 0 to 2π with 100 points
     cos4 = np.cos(x) * 1000000           # Apply cosine function
 
-    plot_numbers([ c4, cos4 ], [ 128, None ], 40, True )
+    plot_numbers([ c4, cos4 ], [ 128, "cos" ], 40, True )
 
 
 if True:

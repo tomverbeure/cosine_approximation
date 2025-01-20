@@ -28,7 +28,9 @@ the first 1000 numbers:
 ![Plot for divider 16384 along with a cosine for 1000 points](cosine_plot_2.png)
 
 Not bad, especially in the first quadrant, before the approximation first
-goes through zero,.
+crosses through zero. The maximum error is 0.35% relative to the amplitude.
+(The maximum relative error per point is 42%, but that's when the function 
+is close to zero.)
 
 Here's what happens for a very low divider of 128. I only show the first 2
 quadrants, after that the approximation already starts to diverge way too much...
