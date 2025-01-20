@@ -37,4 +37,33 @@ quadrants, after that the approximation already starts to diverge way too much..
 
 ![Plot for divider 128 along with a cosine](cosine_plot_3.png)
 
+Lower dividers result in higher errors. In this case, the error relative to the
+maximum amplitude is 2.3% over the first 17 points, the first quadrant.
+
+If we only care about the first quadrant, we still need to know how many points
+there are in the first quadrant for a given divider.
+
+
+ | Shift | Divider | Nr Points | Nr Points/sqrt(Divider) |
+ |-------|-----|-----------|---------------------|
+ | 4 | 16 | 6 | 0.6667 |
+ | 5 | 32 | 8 | 0.7071 |
+ | 6 | 64 | 12 | 0.6667 |
+ | 7 | 128 | 17 | 0.6655 |
+ | 8 | 256 | 25 | 0.64 |
+ | 9 | 512 | 35 | 0.6465 |
+ | 10 | 1024 | 50 | 0.64 |
+ | 11 | 2048 | 71 | 0.6374 |
+ | 12 | 4096 | 100 | 0.64 |
+ | 13 | 8192 | 142 | 0.6374 |
+ | 14 | 16384 | 201 | 0.6368 |
+ | 15 | 32768 | 284 | 0.6374 |
+ | 16 | 65536 | 402 | 0.6368 |
+ | 17 | 131072 | 568 | 0.6374 |
+ | 18 | 262144 | 804 | 0.6368 |
+ | 19 | 524288 | 1137 | 0.6368 |
+ | 20 | 1048576 | 1609 | 0.6364 |
+ | 21 | 2097152 | 2275 | 0.6366 |
+ | 22 | 4194304 | 3219 | 0.6362 |
+ | 23 | 8388608 | 4553 | 0.6361 |
 

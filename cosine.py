@@ -57,11 +57,14 @@ def cosine(divider, nr_points):
 
         if prev_cor >= 0 and cor <= 0 and first_zero == False:
             bits = int(round(math.log(divider)/math.log(2)))
-            print("First zero crossing at %d" % (i-1))
-            print(f"    divider points {divider} / zero crossing {i-1} = {divider/(i-1)}")
-            print(f"    sqrt(divider points 2**{bits}) = { math.sqrt(divider) }")
-            print(f"    sqrt(divider points 2**{bits}) / zero crossing {i-1} =  { math.sqrt(divider) / (i-1) }")
+            #print("First zero crossing at %d" % (i-1))
+            #print(f"    divider points {divider} / zero crossing {i-1} = {divider/(i-1)}")
+            #print(f"    sqrt(divider points 2**{bits}) = { math.sqrt(divider) }")
+            #print(f"    sqrt(divider points 2**{bits}) / zero crossing {i-1} =  { math.sqrt(divider) / (i-1) }")
             first_zero  = True
+
+            sqrt_div_div_points = round(math.sqrt(divider) / (i-1), 4)
+            print(f" | {bits} | { 2**bits } | {i-1} | { sqrt_div_div_points } |")
         
         si      = 2*sprevi - sprev2i//divider - sprev2i
         sprev2i = sprevi
@@ -101,7 +104,13 @@ if True:
     x = np.linspace(0, 128/72 * 2 * np.pi, 128)  # 0 to 2π with 100 points
     cos4 = np.cos(x) * 1000000           # Apply cosine function
 
-    plot_numbers([ c4, cos4 ], [ 128, "cos" ], 40, True )
+    diff4 = cos4 - c4
+
+    plot_numbers([ c4, cos4, diff4 ], [ 128, "cos", "error" ], 40, True )
+
+    max_error_first_q = np.max(np.abs(diff4[0:17]))
+    print("Abs max error in first quadrant: %d" % max_error_first_q)
+    print("Rel max error over amplitidue in first quadrant: %f%%" % ((max_error_first_q/1000000)*100) )
 
 
 if True:
