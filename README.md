@@ -1,12 +1,12 @@
 
 # Cosine Approximation
 
-[cnohr](https://bsky.app/profile/cnlohr.bsky.social) posted this interesting
+[Charles Lohr](https://bsky.app/profile/cnlohr.bsky.social) posted this interesting
 cosine and sine approximation function on [Bluesky](https://bsky.app/profile/cnlohr.bsky.social/post/3lg5e3c7ifc26).
 
 ![Cosine approximation function](cosine_approximation_function.jpg)
 
-The original code has a `>>13` or divide by 8192 term that determines the number of
+The original code has a `>>13` or divide-by-8192 term that determines the number of
 points in one period.
 
 I reimplemented the function in Python to have a closer look at the behavior.
