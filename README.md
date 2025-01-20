@@ -44,7 +44,7 @@ If we only care about the first quadrant, we still need to know how many points
 there are in the first quadrant for a given divider.
 
 
- | Shift | Divider | Nr Points | Nr Points/sqrt(Divider) |
+ | Right shift | Divider | Nr Points | Nr Points/sqrt(Divider) |
  |-------|-----|-----------|---------------------|
  | 4 | 16 | 6 | 0.6667 |
  | 5 | 32 | 8 | 0.7071 |
@@ -66,4 +66,17 @@ there are in the first quadrant for a given divider.
  | 21 | 2097152 | 2275 | 0.6366 |
  | 22 | 4194304 | 3219 | 0.6362 |
  | 23 | 8388608 | 4553 | 0.6361 |
+
+For here, we can estimate the number of points per quadrant as follows:
+
+```
+nr_points ~ sqrt(divider) / 0.64
+```
+
+When the divider is an even power of two, this becomes:
+
+```
+nr_points ~ 2**(shift-1) / 0.64
+```
+
 
