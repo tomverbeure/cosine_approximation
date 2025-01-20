@@ -68,7 +68,7 @@ there are in the first quadrant for a given divider.
  | 22 | 4194304 | 3219 | 0.6362 |
  | 23 | 8388608 | 4553 | 0.6361 |
 
-For here, we can estimate the number of points per quadrant as follows:
+From here, we can estimate the number of points per quadrant as follows:
 
 ```
 nr_points ~ sqrt(divider) / 0.64
