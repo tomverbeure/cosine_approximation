@@ -7,7 +7,7 @@ import math
 
 plot_nr = 0
 
-def plot_numbers(numbers, dividers, nr_points):
+def plot_numbers(numbers, dividers, nr_points, plot_points=False):
     
     # Plotting the numbers
     plt.figure(figsize=(8, 5))  # Optional: Adjust the figure size
@@ -18,7 +18,11 @@ def plot_numbers(numbers, dividers, nr_points):
         else:
             label = f"div %d" % dividers[i]
             
-        plt.plot(n[0:nr_points], label=label)
+        if plot_points:
+            plt.plot(n[0:nr_points], marker="x", label=label)
+        else:
+            plt.plot(n[0:nr_points], label=label)
+            
     
     # Adding titles and labels
     plt.title('Cosine approximation')
@@ -85,8 +89,12 @@ if True:
     plot_numbers([ c3, cos1 ], [ 16384, None ], 1000 )
 
 if True:
-    c4  = cosine(100, 100)
-    plot_numbers([ c4 ], [ 100 ], 60 )
+    c4  = cosine(128, 128)
+
+    x = np.linspace(0, 128/72 * 2 * np.pi, 128)  # 0 to 2π with 100 points
+    cos4 = np.cos(x) * 1000000           # Apply cosine function
+
+    plot_numbers([ c4, cos4 ], [ 128, None ], 40, True )
 
 
 if True:
